@@ -46,8 +46,8 @@ def main():
         file.write(resume_latex)
 
     
-    include_photo = input("Do you want to compile the resume to PDF? (y/n): ")
-    if include_photo == 'y':
+    compile_latex = input("Do you want to compile the resume to PDF? (y/n): ")
+    if compile_latex == 'y':
         # compile the latex file to PDF using pdflatex
         import subprocess
         subprocess.run(['pdflatex', 'resume.tex'])
