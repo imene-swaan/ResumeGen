@@ -1,0 +1,100 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "job_title": {
+        "type": "string"
+      },
+      "phone_number": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "linkedin_username": {
+        "type": "string"
+      },
+      "github_username": {
+        "type": "string"
+      },
+      "photo_path": {
+        "type": "string",
+        "format": "uri",
+        "description": "Leave empty or omit if no photo should be included"
+      },
+      "objective": {
+        "type": "string"
+      },
+      "experience": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "job_title": {"type": "string"},
+            "company_name": {"type": "string"},
+            "job_location": {"type": "string"},
+            "job_start_month_year": {"type": "string"},
+            "job_end_month_year": {"type": "string"},
+            "job_description": {"type": "string"}
+          },
+          "required": ["job_title", "company_name", "job_location", "job_start_month_year", "job_end_month_year", "job_description"]
+        }
+      },
+      "projects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {"type": "string"},
+            "description": {"type": "string"}
+          },
+          "required": ["title", "description"]
+        }
+      },
+      "education": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "university_name": {"type": "string"},
+            "university_location": {"type": "string"},
+            "degree": {"type": "string"},
+            "graduation_month_year": {"type": "string"},
+            "major_description": {"type": "string"}
+          },
+          "required": ["university_name", "degree", "graduation_month_year"]
+        }
+      },
+      "skills": {
+        "type": "string",
+        "description": "This can be a string of comma-separated skills."
+      },
+      "certifications": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "authority": {"type": "string"},
+            "year": {"type": "string"}
+          },
+          "required": ["name", "authority", "year"]
+        }
+      }
+    },
+    "required": [
+      "name",
+      "phone_number",
+      "email",
+      "linkedin_username",
+      "github_username",
+      "objective",
+      "skills"
+    ],
+    "additionalProperties": false
+  }
+  
