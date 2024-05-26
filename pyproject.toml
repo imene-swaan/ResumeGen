@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "ResumeGen"
+version = "0.1.0"
+description = ""
+authors = ["Imene KOLLI <53266529+imene-swaan@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+openai = "^1.30.1"
+Jinja2 = "^3.1.4"
+python-dotenv = "^1.0.1"
+toml = "^0.10.2"
+python-frontmatter = "^1.1.0"
+jsonschema = "^4.22.0"
+tenacity = "^8.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
