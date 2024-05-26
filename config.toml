@@ -1,0 +1,14 @@
+[model]
+name = "gpt-3.5-turbo"
+description = "GPT-3.5 Turbo Model with 4096 tokens context window"
+
+[model.config]
+temperature = 0.3
+n = 1
+stop = []
+stream = false
+
+
+
+
+
