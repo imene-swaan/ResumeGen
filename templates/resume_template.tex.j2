@@ -1,0 +1,101 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[left=0.75in, top=0.6in, right=0.75in, bottom=0.6in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{graphicx}
+\usepackage{fontawesome5}
+
+% Set up hyperref package
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=blue,
+}
+
+% Setup section formats
+\titleformat{\section}
+{\Large\bfseries}
+{}
+{0em}
+{}[\titlerule]
+
+% Adjust list spacing
+\setlist[itemize]{leftmargin=*}
+
+% Start of the document
+\begin{document}
+
+\pagestyle{empty} % Disable headers and footers
+
+% Title head with optional picture on the right
+\noindent\begin{minipage}{0.75\textwidth}
+    {\Huge \textbf{ {{ name }}}}\\
+    \vspace{5pt}
+    {\large \textit{ {{ job_title }}}}\\
+    \vspace{5pt}
+    {\small \faIcon{phone} {{ phone_number }} \quad \faIcon{envelope} {{ email }} \quad \faIcon{linkedin} \href{https://www.linkedin.com/in/{{ linkedin_username }}}{LinkedIn} \quad \faIcon{github} \href{https://github.com/{{ github_username }}}{GitHub}}
+\end{minipage}
+{% if photo_path %}
+\hfill
+\begin{minipage}{0.2\textwidth}
+    \includegraphics[width=\linewidth]{ {{ photo_path }}}
+\end{minipage}
+{% endif %}
+
+{% if objective %}
+\section*{Objective}
+{{ objective }}
+{% endif %}
+
+{% if experience %}
+\section*{Experience}
+\begin{itemize}
+{% for job in experience %}
+  \item \textbf{ {{ job.job_title }}, {{ job.company_name }} - {{ job.job_location }} }\\
+    \textit{ {{ job.job_start_month_year }} - {{ job.job_end_month_year }} }\\
+    {{ job.job_description }}
+{% endfor %}
+\end{itemize}
+{% endif %}
+
+
+{% if projects %}
+\section*{Projects}
+\begin{itemize}
+{% for project in projects %}
+  \item \textbf{ {{ project.title }} }: {{ project.description }}
+{% endfor %}
+\end{itemize}
+{% endif %}
+
+{% if education %}
+\section*{Education}
+\begin{itemize}
+{% for edu in education %}
+  \item \textbf{ {{ edu.university_name }} - {{ edu.university_location }} }\\
+    {{ edu.degree }}, \textit{{ edu.graduation_month_year }}\\
+    {{ edu.major_description }}
+
+{% endfor %}
+\end{itemize}
+{% endif %}
+
+{% if skills %}
+\section*{Skills}
+{{ skills }}
+{% endif %}
+
+{% if certifications %}
+\section*{Certifications}
+\begin{itemize}
+{% for cert in certifications %}
+  \item {{ cert.name }}, {{ cert.authority }}, \textit{ {{ cert.year }} }
+
+{% endfor %}
+\end{itemize}
+{% endif %}
+
+\end{document}
