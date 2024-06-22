@@ -165,4 +165,6 @@ cover/
 *.fdb_latexmk
 *.synctex.gz
 *.aux
-input/
+input/background_info.md
+input/recommendation.md
+input/.DS_Store
