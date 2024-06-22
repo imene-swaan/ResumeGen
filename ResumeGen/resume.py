@@ -33,12 +33,12 @@ class ResumeGPT:
             return False, e.message
 
 
-    def _generate_resume_content(self, job_description, background_info) -> Dict:
+    def _generate_resume_content(self, job_description, background_info, lang) -> Dict:
         chat_handler = ChatHandler()
         intro_session = [
             {
                 "role": "system",
-                "content": f"Generate a JSON formatted resume based on the following job/PhD description: {job_description}. Use information of a person with this background: {background_info}, as detailed in the schema."
+                "content": f"Generate a JSON formatted resume in {lang} based on the following job/PhD description: {job_description}, as detailed in the schema. Use my background information: {background_info}. Note that I am a female 25 year old."
 
             }
         ]
@@ -49,16 +49,16 @@ class ResumeGPT:
             )
 
       
-        response_data = json.loads(response.function_call.arguments)
+        response_data = json.loads(response)
         return response_data
 
     
 
 
-    def collect_resume_data(self, job_description, background_info, personal_info, save_if_invalid=False):
+    def collect_resume_data(self, job_description, background_info, lang, personal_info, save_if_invalid=False):
         resume_content = {}
         resume_content.update(personal_info)
-        resume_content.update(self._generate_resume_content(job_description, background_info))
+        resume_content.update(self._generate_resume_content(job_description, background_info, lang))
         is_valid, error_message = self._validate_json(resume_content)
         if not is_valid:
             if save_if_invalid:
