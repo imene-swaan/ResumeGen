@@ -138,12 +138,24 @@ class ChatHandler:
                 function_call=function_call,
                 **self.model.config.model_dump(),
             )
-            return response.choices[0].message
+
+            return self._Response(response, function_call)
         except Exception as e:
-            print("Unable to generate ChatCompletion response")
-            print(f"Exception: {e}")
-            return e
+            raise Exception(f"Error in chat completion request: {e}")
 
    
 
+    def _Response(self, response, function_call) -> str:
+        """
+        Generate response
+
+        Args:
+            response (str): Response from GPT-3
+
+        Returns:
+            str: Response
+        """
+        if function_call is None:
+            return response.choices[0].message.content
+        return response.choices[0].message.function_call.arguments
 
